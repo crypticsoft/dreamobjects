@@ -1,4 +1,4 @@
-# DreamObjects Connection #
+# Object Store Connection #
 **Tags:** cloud, object store, backup
 **Requires at least:** 3.4  
 **Tested up to:** 3.9
