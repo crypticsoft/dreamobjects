@@ -10,7 +10,7 @@ Connect your WordPress site to an Object Store.
 
 ## Description ##
 
-This is a fork of DreamObjects with the intent to allow other Object Store services by allowing an alternative endpoint.
+This is a fork of DreamObjects to allow other Object Store services by specifying an alternative endpoint.
 
 ## 27 June 2014 ##
 
