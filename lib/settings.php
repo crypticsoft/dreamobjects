@@ -54,8 +54,11 @@ class DHDOSET {
     public static function add_register_settings() {
 
      // Keypair settings
-        add_settings_section( 'keypair_id', __('DreamObjects Backups Access Settings', 'dreamobjects'), 'keypair_callback', 'dh-do-keypair_page' );
+        add_settings_section( 'keypair_id', __('Object Store Backups Access Settings', 'dreamobjects'), 'keypair_callback', 'dh-do-keypair_page' );
         
+	register_setting( 'dh-do-backuper-settings','dh-do-endpoint');
+        add_settings_field( 'dh-do-endpoint_id',  __('Endpoint URL', 'dreamobjects'), 'endpoint_callback', 'dh-do-keypair_page', 'backuper_id' );
+
         register_setting( 'dh-do-keypair-settings','dh-do-key');
         add_settings_field( 'key_id', __('Access Key', 'dreamobjects'), 'key_callback', 'dh-do-keypair_page', 'keypair_id' );
         
@@ -72,6 +75,9 @@ class DHDOSET {
     	function secretkey_callback() {
         	echo '<input type="text" name="dh-do-secretkey" value="'. get_option('dh-do-secretkey') .'" class="regular-text" autocomplete="off" />';
     	}
+	function backup_endpoint_callback() {
+		echo '<input type="text" name="dh-do-endpoint" value="'. get_option('dh-do-endpoint') .'" class="regular-text" autocomplete="off" />';
+	}
 
      // Backup Settings
         add_settings_section( 'backuper_id', __('Settings', 'dreamobjects'), 'backuper_callback', 'dh-do-backuper_page' );
@@ -92,22 +98,23 @@ class DHDOSET {
             echo 'Configure your site for backups by selecting your bucket, what you want to backup, and when.';
         }
         function backup_bucket_callback() {
-        	$s3 = AwsS3DHDOSET::factory(array(
-				'key'    => get_option('dh-do-key'),
-			    'secret' => get_option('dh-do-secretkey'),
-			    'base_url' => 'http://objects.dreamhost.com',
-			));
- 
-            $buckets = $s3->listBuckets();
-            
-            ?> <select name="dh-do-bucket">
+		$s3 = AwsS3DHDOSET::factory(array(
+			'key'    => get_option('dh-do-key'),
+			'secret' => get_option('dh-do-secretkey'),
+			'base_url' => get_option('dh-do-endpoint'),
+		));
+ 		
+		$buckets = $s3->listBuckets();    
+?> 
+		<select name="dh-do-bucket">
                     <option value="XXXX">(select a bucket)</option>
                     <?php foreach ( $buckets['Buckets'] as $bucket ) : ?>
                     <option <?php if ( $bucket['Name'] == get_option('dh-do-bucket') ) echo 'selected="selected"' ?> ><?php echo $bucket['Name'] ?></option>
                     <?php endforeach; ?>
                 </select>
-				<p class="description"><?php echo __('Select from pre-existing buckets.', dreamobjects); ?></p>
-				<?php if ( get_option('dh-do-bucketup') && ( !get_option('dh-do-bucketup') || (get_option('dh-do-bucketup') != "XXXX") ) ) { 
+		<p class="description"><?php echo __('Select from pre-existing buckets.', dreamobjects); ?></p>
+<?php 
+	if ( get_option('dh-do-bucketup') && ( !get_option('dh-do-bucketup') || (get_option('dh-do-bucketup') != "XXXX") ) ) { 
     				$alreadyusing = sprintf(__('You are currently using the bucket "%s" for Uploads. While you can reuse this bucket, it would be best not to.', dreamobjects), get_option('dh-do-bucketup')  );
     				echo '<p class="description">' . $alreadyusing . '</p>';
                 }

@@ -84,7 +84,7 @@ class DHDO {
     }
 
     // Returns the URL of the plugin's folder.
-    function getURL() {
+    public static function getURL() {
         return plugins_url() . '/';
     }
    
@@ -118,7 +118,7 @@ class DHDO {
      */
         
     // Scan folders to collect all the filenames
-    function rscandir($base='') {
+    public static function rscandir($base='') {
         $data = array_diff(scandir($base), array('.', '..'));
         $omit = array('\/cache');
     
@@ -283,9 +283,9 @@ class DHDO {
 			if ( @file_exists( $file ) ) {
 	
 			  	$s3 = AwsS3DHDO::factory(array(
-					'key'      => get_option('dh-do-key'),
+				    'key'      => get_option('dh-do-key'),
 				    'secret'   => get_option('dh-do-secretkey'),
-				    'base_url' => 'http://objects.dreamhost.com',
+				    'base_url' => get_option('dh-do-endpoint'),
 				));
 	
 /*
@@ -401,9 +401,9 @@ class DHDO {
             $num_backups = get_option('dh-do-retain');
 
 		  	$s3 = AwsS3DHDO::factory(array(
-				'key'      => get_option('dh-do-key'),
+			    'key'      => get_option('dh-do-key'),
 			    'secret'   => get_option('dh-do-secretkey'),
-			    'base_url' => 'http://objects.dreamhost.com',
+			    'base_url' => get_option('dh-do-endpoint'),
 			));
 
             $bucket = get_option('dh-do-bucket');
@@ -435,7 +435,7 @@ class DHDO {
         DHDO::logger('Backup Complete.');
         DHDO::logger('');
     }
-    function cron_schedules($schedules) {
+    public static function cron_schedules($schedules) {
         $schedules['daily'] = array('interval'=>86400, 'display' => 'Once Daily');
         $schedules['weekly'] = array('interval'=>604800, 'display' => 'Once Weekly');
         $schedules['monthly'] = array('interval'=>2592000, 'display' => 'Once Monthly');
