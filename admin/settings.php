@@ -32,9 +32,9 @@ if (!defined('ABSPATH')) {
 			</script>
 			<div class="wrap">
 				<div id="icon-dreamobjects" class="icon32"></div>
-				<h2><?php echo __("DreamObjects Backups", dreamobjects); ?></h2>
+				<h2><?php echo __("Object Store Backups", dreamobjects); ?></h2>
 
-				<p><?php echo __('DreamObjects&#153; is an inexpensive, scalable object storage service that was developed from the ground up to provide a reliable, flexible cloud storage solution for entrepreneurs and developers. It provides a perfect, scalable storage solution for your WordPress site.', dreamobjects); ?></p>
+				<p><?php echo __('Scalable object storage service provides a reliable, flexible cloud storage solution for entrepreneurs and developers. It provides a perfect, scalable storage solution for your WordPress site.', dreamobjects); ?></p>
 
 <?php if ( get_option('dh-do-key') && get_option('dh-do-secretkey') ) { ?>
 

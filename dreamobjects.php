@@ -1,17 +1,17 @@
 <?php
 
 /*
-Plugin Name: DreamObjects Backups
-Plugin URI: https://github.com/Ipstenu/dreamobjects
-Description: Connect your WordPress install to your DreamHost DreamObjects buckets.
+Plugin Name: Object Store Backups
+Plugin URI: https://github.com/crypticsoft/dreamobjects
+Description: Connect your WordPress install to your Object Store buckets.
 Version: 3.5.1
-Author: Mika Epstein
-Author URI: http://ipstenu.org/
+Author: Todd Wilson
+Author URI: http://icreativepro.com/
 Network: false
 Text Domain: dreamobjects
 Domain Path: /i18n
 
-Copyright 2012 Mika Epstein (email: ipstenu@ipstenu.org)
+Copyright 2015 Todd Wilson (email: crypticsoft@gmail.com)
 
     This file is part of DreamObjects, a plugin for WordPress.
 
@@ -45,25 +45,25 @@ if ( is_admin() && ( !defined( 'DOING_AJAX' ) || !DOING_AJAX ) ) {
 	require_once ABSPATH . '/wp-admin/includes/plugin.php';
 		
 	if ( version_compare( PHP_VERSION, '5.3.3', '<' ) ) {
-		dreamobjects_core_incompatibile( __( 'The official Amazon Web Services SDK, which DreamObjects Backups relies on, requires PHP 5.3 or higher. The plugin has now disabled itself.', 'dreamobjects' ) );
+		dreamobjects_core_incompatibile( __( 'The official Amazon Web Services SDK, which Object Store Backups relies on, requires PHP 5.3 or higher. The plugin has now disabled itself.', 'dreamobjects' ) );
 	}
 	elseif ( !function_exists( 'curl_version' ) 
 		|| !( $curl = curl_version() ) || empty( $curl['version'] ) || empty( $curl['features'] )
 		|| version_compare( $curl['version'], '7.16.2', '<' ) )
 	{
-		dreamobjects_core_incompatibile( __( 'The official Amazon Web Services SDK, which DreamObjects Backups relies on, requires cURL 7.16.2+. The plugin has now disabled itself.', 'dreamobjects' ) );
+		dreamobjects_core_incompatibile( __( 'The official Amazon Web Services SDK, which Object Store Backups relies on, requires cURL 7.16.2+. The plugin has now disabled itself.', 'dreamobjects' ) );
 	}
 	elseif ( !( $curl['features'] & CURL_VERSION_SSL ) ) {
-		dreamobjects_core_incompatibile( __( 'The official Amazon Web Services SDK, which DreamObjects Backups relies on, requires that cURL is compiled with OpenSSL. The plugin has now disabled itself.', 'dreamobjects' ) );
+		dreamobjects_core_incompatibile( __( 'The official Amazon Web Services SDK, which Object Store Backups relies on, requires that cURL is compiled with OpenSSL. The plugin has now disabled itself.', 'dreamobjects' ) );
 	}
 	elseif ( !( $curl['features'] & CURL_VERSION_LIBZ ) ) {
-		dreamobjects_core_incompatibile( __( 'The official Amazon Web Services SDK, which DreamObjects Backups relies on, requires that cURL is compiled with zlib. The plugin has now disabled itself.', 'dreamobjects' ) );
+		dreamobjects_core_incompatibile( __( 'The official Amazon Web Services SDK, which Object Store Backups relies on, requires that cURL is compiled with zlib. The plugin has now disabled itself.', 'dreamobjects' ) );
 	} elseif ( is_multisite() ) {
-		dreamobjects_core_incompatibile( __( 'Sorry, but DreamObjects Backups is not currently compatible with WordPress Multisite, and should not be used. The plugin has now disabled itself.', 'dreamobjects' ) );
+		dreamobjects_core_incompatibile( __( 'Sorry, but Object Store Backups is not currently compatible with WordPress Multisite, and should not be used. The plugin has now disabled itself.', 'dreamobjects' ) );
 	} elseif (is_plugin_active( 'amazon-web-services/amazon-web-services.php' )) {
-	dreamobjects_core_incompatibile( __( 'Running both DreamObjects Backups AND BackupBuddy at once will cause a rift in the space/time continuum, because we use different versions of the AWS SDK. Please deactivate BackupBuddy if you wish to use DreamObjects.', 'dreamobjects' ) );
+	dreamobjects_core_incompatibile( __( 'Running both Object Store Backups AND BackupBuddy at once will cause a rift in the space/time continuum, because we use different versions of the AWS SDK. Please deactivate BackupBuddy if you wish to use DreamObjects.', 'dreamobjects' ) );
 	} elseif (is_plugin_active( 'backupbuddy/backupbuddy.php' )) {
-	dreamobjects_core_incompatibile( __( 'Running both DreamObjects Backups AND Amazon Web Services at once will cause a rift in the space/time continuum, because we use different versions of the AWS SDK. Please deactivate Amazon Web Services if you wish to use DreamObjects.', 'dreamobjects' ) );
+	dreamobjects_core_incompatibile( __( 'Running both Object Store Backups AND Amazon Web Services at once will cause a rift in the space/time continuum, because we use different versions of the AWS SDK. Please deactivate Amazon Web Services if you wish to use Object Store.', 'dreamobjects' ) );
 	}
 }
  

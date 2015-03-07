@@ -33,7 +33,7 @@ class DHDOSET {
     public static function add_settings_page() {
         load_plugin_textdomain(dreamobjects, DHDO_PLUGIN_DIR . 'i18n', 'i18n');
         add_action('admin_init', array('DHDOSET', 'add_register_settings'));
-        add_menu_page(__('DreamObjects Settings', 'dreamobjects'), __('DreamObjects', 'dreamobjects'), 'manage_options', 'dreamobjects-menu', array('DHDOSET', 'settings_page'), 'dashicons-backup' );
+        add_menu_page(__('Object Store Settings', 'dreamobjects'), __('Object Store', 'dreamobjects'), 'manage_options', 'dreamobjects-menu', array('DHDOSET', 'settings_page'), 'dashicons-backup' );
         
         if ( get_option('dh-do-key') && get_option('dh-do-secretkey') ) {
             add_submenu_page('dreamobjects-menu', __('Backups', 'dreamobjects'), __('Backups', 'dreamobjects'), 'manage_options', 'dreamobjects-menu-backup', array('DHDOSET', 'backup_page'));  
@@ -163,7 +163,7 @@ class DHDOSET {
 				    <?php endforeach; ?>
 				</select>
 				<p class="description"><?php echo __('How many many backups do you want to keep? 15 is recommended.', dreamobjects); ?></p>
-				<p class="description"><div class="dashicons dashicons-info"></div> <?php echo __('DreamObjects charges you based on diskspace used. Setting to \'All\' will retain your backups forwever, however this can cost you a large sum of money over time. Please use cautiously!', dreamobjects); ?></p>
+				<p class="description"><div class="dashicons dashicons-info"></div> <?php echo __('Object Store charges you based on diskspace used. Setting to \'All\' will retain your backups forwever, however this can cost you a large sum of money over time. Please use cautiously!', dreamobjects); ?></p>
 		<?php
     	}
 
