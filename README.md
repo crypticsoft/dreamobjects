@@ -1,16 +1,16 @@
 # DreamObjects Connection #
-**Tags:** cloud, dreamhost, dreamobjects, backup  
+**Tags:** cloud, object store, backup
 **Requires at least:** 3.4  
 **Tested up to:** 3.9
 **Stable tag:** 3.4
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
-Connect your WordPress site to DreamHost's DreamObjects.
+Connect your WordPress site to an Object Store.
 
 ## Description ##
 
-This is the GitHome of DreamObjects, and is where I do the dev work. Betas are pushed here as soon as they work, and when there's 'enough' to push a new version, it goes to WordPress Plugins SVN.
+This is a fork of DreamObjects with the intent to allow other Object Store services by allowing an alternative endpoint.
 
 ## 27 June 2014 ##
 
