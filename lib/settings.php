@@ -56,8 +56,8 @@ class DHDOSET {
      // Keypair settings
         add_settings_section( 'keypair_id', __('Object Store Backups Access Settings', 'dreamobjects'), 'keypair_callback', 'dh-do-keypair_page' );
         
-	register_setting( 'dh-do-backuper-settings','dh-do-endpoint');
-        add_settings_field( 'dh-do-endpoint_id',  __('Endpoint URL', 'dreamobjects'), 'endpoint_callback', 'dh-do-keypair_page', 'backuper_id' );
+	register_setting( 'dh-do-keypair-settings','dh-do-endpoint');
+        add_settings_field( 'endpoint_id',  __('Endpoint URL', 'dreamobjects'), 'endpoint_callback', 'dh-do-keypair_page', 'keypair_id' );
 
         register_setting( 'dh-do-keypair-settings','dh-do-key');
         add_settings_field( 'key_id', __('Access Key', 'dreamobjects'), 'key_callback', 'dh-do-keypair_page', 'keypair_id' );
@@ -75,7 +75,7 @@ class DHDOSET {
     	function secretkey_callback() {
         	echo '<input type="text" name="dh-do-secretkey" value="'. get_option('dh-do-secretkey') .'" class="regular-text" autocomplete="off" />';
     	}
-	function backup_endpoint_callback() {
+	function endpoint_callback() {
 		echo '<input type="text" name="dh-do-endpoint" value="'. get_option('dh-do-endpoint') .'" class="regular-text" autocomplete="off" />';
 	}
 
