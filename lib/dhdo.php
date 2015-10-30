@@ -278,6 +278,11 @@ class DHDO {
 				@unlink($file);
 				DHDO::logger('Zip file failed to generate. Nothing will be backed up.');
 			}
+	    // Delete SQL
+            if(file_exists($sqlfile)) { 
+                @unlink($sqlfile);
+                DHDO::logger('Deleting SQL file: '.$sqlfile.' ...');
+            }
             
             // Upload
 
@@ -288,15 +293,6 @@ class DHDO {
 				    'secret'   => get_option('dh-do-secretkey'),
 				    'base_url' => get_option('dh-do-endpoint'),
 				));
-	
-/*
-				// https://dreamxtream.wordpress.com/2013/10/29/aws-php-sdk-logging-using-guzzle/
-				$logPlugin = LogPlugin::getDebugPlugin(TRUE,
-				//Don't provide this parameter to show the log in PHP output
-					fopen(DHDO_PLUGIN_DIR.'/debug2.txt', 'a')
-				);
-				$s3->addSubscriber($logPlugin);
-*/
 	
 	            $bucket = get_option('dh-do-bucket');
 	            $parseUrl = parse_url(trim(home_url()));
@@ -311,7 +307,7 @@ class DHDO {
 				// Uploading
 	            set_time_limit(180);
 	
-				DHDO::logger('Begining upload to DreamObjects servers.');
+				DHDO::logger('Beginning upload to Object Store servers.');
 	
 				// Check the size of the file before we upload, in order to compensate for large files
 				if ( @filesize($file) >= (100 * 1024 * 1024) ) {
