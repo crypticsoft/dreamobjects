@@ -60,10 +60,6 @@ if ( is_admin() && ( !defined( 'DOING_AJAX' ) || !DOING_AJAX ) ) {
 		dreamobjects_core_incompatibile( __( 'The official Amazon Web Services SDK, which Object Store Backups relies on, requires that cURL is compiled with zlib. The plugin has now disabled itself.', 'dreamobjects' ) );
 	} elseif ( is_multisite() ) {
 		dreamobjects_core_incompatibile( __( 'Sorry, but Object Store Backups is not currently compatible with WordPress Multisite, and should not be used. The plugin has now disabled itself.', 'dreamobjects' ) );
-	} elseif (is_plugin_active( 'amazon-web-services/amazon-web-services.php' )) {
-	dreamobjects_core_incompatibile( __( 'Running both Object Store Backups AND BackupBuddy at once will cause a rift in the space/time continuum, because we use different versions of the AWS SDK. Please deactivate BackupBuddy if you wish to use DreamObjects.', 'dreamobjects' ) );
-	} elseif (is_plugin_active( 'backupbuddy/backupbuddy.php' )) {
-	dreamobjects_core_incompatibile( __( 'Running both Object Store Backups AND Amazon Web Services at once will cause a rift in the space/time continuum, because we use different versions of the AWS SDK. Please deactivate Amazon Web Services if you wish to use Object Store.', 'dreamobjects' ) );
 	}
 }
  
@@ -72,9 +68,9 @@ require_once 'lib/dhdo.php';
 require_once 'lib/messages.php';
 require_once 'lib/settings.php';
 
-if (false === class_exists('Symfony\Component\ClassLoader\UniversalClassLoader', false)) {
-	require_once 'aws/aws-autoloader.php';
-}
+#if (false === class_exists('Symfony\Component\ClassLoader\UniversalClassLoader', false)) {
+#	require_once 'aws/aws-autoloader.php';
+#}
 
 // WP-CLI
 if ( defined('WP_CLI') && WP_CLI ) {
