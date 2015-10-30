@@ -2,25 +2,25 @@
 
 /*
 Plugin Name: Object Store Backups
-Plugin URI: https://github.com/crypticsoft/dreamobjects
-Description: Connect your WordPress install to your Object Store buckets.
-Version: 3.5.1
+Plugin URI: https://github.com/crypticsoft/objectstore-backups
+Description: Backup your WordPress site to any Object Store service.
+Version: 3.5.2
 Author: Todd Wilson
 Author URI: http://icreativepro.com/
 Network: false
-Text Domain: dreamobjects
+Text Domain: objectstore-backups
 Domain Path: /i18n
 
-Copyright 2015 Todd Wilson (email: crypticsoft@gmail.com)
+Copyright 2015 Todd Wilson (email: twilson@liquidweb.com)
 
-    This file is part of DreamObjects, a plugin for WordPress.
+    This objectstore-backups plugin is a fork of DreamObjects, a plugin for WordPress.
 
-    DreamObjects is free software: you can redistribute it and/or modify
+    objectstore-backups is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 2 of the License, or
     (at your option) any later version.
 
-    DreamObjects is distributed in the hope that it will be useful,
+    objectstore-backups is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
@@ -67,10 +67,6 @@ require_once 'lib/defines.php';
 require_once 'lib/dhdo.php';
 require_once 'lib/messages.php';
 require_once 'lib/settings.php';
-
-#if (false === class_exists('Symfony\Component\ClassLoader\UniversalClassLoader', false)) {
-#	require_once 'aws/aws-autoloader.php';
-#}
 
 // WP-CLI
 if ( defined('WP_CLI') && WP_CLI ) {
