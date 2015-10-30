@@ -179,6 +179,22 @@ You can also log in via SSH and run 'wp dreamobjects backup' to see if that work
 
 == Changelog ==
 
+= 3.5.3 =
+
+October 2015 by crypticsoft
+
+* Removing the aws sdk files in place of using the amazon web services plugin
+* function dhdo::getURL needed to be static
+
+TODOs: 
+* Have a check for amazon web services plugin in order to activate.
+
+= 3.5.2 =
+
+March 2015 by Ipstenu
+
+* Hashing the SQL filename
+
 = 3.5.1 = 
 
 December 11, 2014 by Ipstenu
