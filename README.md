@@ -39,6 +39,6 @@ Where to start?
 * zips on large sites - Over 2G of data SHOULD fail now!
 
 <em>Remaining Issues...</em>
-
+* Permissions need to be set on the debug.txt file in order for logging to work properly. This includes the wp-content/upgrade/ folder where the zip file is intially created 'dreamobject-backups.zip'.
 * When people use WP_HOME and WP_SITEURL in their wp-config, it doesn't always work. I don't know why. It shouldn't care.
 
